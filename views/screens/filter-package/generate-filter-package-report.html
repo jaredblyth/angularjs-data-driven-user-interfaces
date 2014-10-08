@@ -1,0 +1,37 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#generateFilterPackageReport">
+          Filter Package Report
+        </a>
+      </h4>
+    </div>
+    <div id="generateFilterPackageReport" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised"> 
+
+            <p style="margin-bottom:15px;">To generate a filter package report for {{model.currentSchool}} you can choose from the following formats:</p>
+            <ul>
+                <li>Use the bulk operations Export option to download the Filter Package report in CSV format
+				
+				<select id="actions" name="actions" class="form-control input-sm"
+                        ng-options="o for o in model.bulkOperations" ng-model="model.operation"
+                        ng-change="bulk()">
+                </select>
+				
+				</li>
+				
+                <li>Use the Email Report button to have the report delivered via email to the following email address: {{model.user}}
+            
+				<br/><button id="emailButton" class="btn btn-primary" ng-click="generateEmailReport()" spinner-button>Email Report</button>
+				
+				</li>
+            </ul>
+            
+
+	  
+      </div>
+    </div>
+  </div>
+
+</div>

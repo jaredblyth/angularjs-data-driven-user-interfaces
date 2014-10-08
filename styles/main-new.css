@@ -1,0 +1,438 @@
+/*  MISC STYLES FOR THE VARIOUS SCREENS  */
+
+#ajaxLoaderGif {position:absolute;left:50%;top:230px;visibility:hidden;}
+
+#searchBoxGroup {margin-bottom:40px;}
+#smartSearchValidationError{margin-top:-35px;margin-bottom:20px;display:none;}
+#smarttableSearch {position:absolute;margin-top:-40px;width:100%;border: solid 1px ;border-radius: 3px; border-color:rgb(200,200,200);background-color:#fff;}
+.odd {background-color: #DFEDF8;}
+
+input {padding-right:10px;}
+
+input[type=radio] + label {display:inline-block;margin-right:30px;font-weight:normal;padding-top:10px;}
+
+.smarttable {margin-top:10px;}
+
+.form-control2 {
+  width: 53px;
+  height: 34px;
+  padding: 6px 6px;
+  color: #555555;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 1px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.form-control2:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+#filterCheck  input {width:100%;margin-top:10px;}
+#filterCheck  button {margin-top:6px;}
+#proxyClientFilterCheck  input {width:100%;margin-top:10px;}
+#proxyClientFilterCheck  button {margin-top:6px;}
+#filterResults {margin-top:20px;}
+#actions {width:160px;margin-top:15px;margin-bottom:15px;}
+#emailButton {width:160px;margin-top:15px;margin-bottom:15px;}
+#addNewSite {margin-top:15px;}
+#smarttablePermanentlyBlockedSites {}
+#permanentlyBlockedSitesPolicy {margin-top:15px;float:right;}
+#smartTableActiveModulesReports {margin-bottom:15px;}
+#addSiteInput, #editSiteInput {margin-top:15px;margin-bottom:10px;}
+#saveChanges {margin-top:15px;}
+#displayClose, #exportButton, #emailBtn, #displayButton, #saveButton {margin-top:15px;margin-right:5px;margin-bottom:10px;}
+.tablePolicyChanges {display: table; margin-top:-10px;}
+.rowPolicyChanges {display: table-row; width:100%;}
+.cellPolicyChanges {display: table-cell;padding:5px;width:10%;}
+#refreshButtonPolicyChanges, #exportButtonPolicyChanges, #emailButtonPolicyChanges, #closePolicyChanges {margin-top:15px;margin-bottom:15px;margin-left:5px;}
+#smartTablePolicyDetails {margin-top:5px;}
+.smart-table tfoot tr td{text-align:center;}
+.pagination ul  li{float: left;list-style-type: none;display:block;background-color:#E6E6E6;height:32px;width:32px;cursor:pointer;padding-left:10px;padding-top:5px;padding-right:15px;font-size:16px;margin:1px;}
+.pagination ul  li a{color:#000;}
+#smarttableSchoolMessages {margin-bottom:20px;}
+#updateMessageInput {margin-top:15px;}
+#updateMessageButton{margin-top:15px;}
+#saveCurrentListsButton{margin-top:15px;float:right;}
+#addNewCurrentListButton {margin-top:15px;}
+#addExternalListsButton, #updateExternalListsButton {margin-top:15px;float:right;margin-right:5px;}
+#cancelAddExternalListsButton {margin-top:15px;float:right;}
+#addNewListItemButton {margin-top:15px;}
+#externalListItemsExportButton {margin-top:15px;}
+#importListItemsButton {margin-top:15px;}
+#deleteAllListItemsButton {margin-top:15px;}
+#addListItemsButton, #updateListItemsButton {margin-top:15px;float:right;margin-right:5px;}
+#cancelAddListItemsButton {margin-top:15px;float:right;}
+.tableExternalLists {display: table; margin-top:-10px;}
+.rowExternalLists {display: table-row; width:100%;}
+.cellExternalLists {display: table-cell;padding:5px;width:10%;}
+
+
+
+
+/* Bootstrap button-danger classes added for DETE demo - these should just be available from bootstrap */
+.btn2 {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+
+.btn2-danger {
+    color: #ffffff;
+    background-color: rgb(178, 0, 0);
+    border-color: rgb(178, 0, 0);
+}
+
+.btn2-round {
+    padding: 1px 5px;
+    border-radius: 15px;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning {
+    color: #ffffff;
+    background-color: #ed9c28;
+    border-color: #d58512;
+}
+
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('/fonts/glyphicons-halflings-regular.eot');
+    src: url('/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+.glyphicon2 {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.glyphicon2-trash:before {
+    content: "\e020";
+}
+/* End of Boostrap button-danger classes */
+
+/*  END OF MISC STYLES FOR THE VARIOUS SCREENS  */
+
+
+
+
+
+/* THESE STYLES USE THE SAME SELECTOR NAMES AS MICROSOFT.CSS BUT ARE BEING APPLIED TO SOLVE PROBELMATIC STYLES FROM MICROSOFT  */
+
+.page-header {
+	margin:				0 0 10px 0;
+	padding:			8px 5px 10px 10px;
+	
+	border:				1px solid #ABABAB;
+	
+    background-position:left center;
+    background-repeat:	no-repeat;	
+}
+
+#content-container{width: 57%; }
+
+#user-details {
+    margin-top: -21px;
+	margin-bottom: 10px;
+	padding:0 8px 5px 15px;
+	width: 97%;
+
+}
+
+#user-details h3  a{	
+	color:				#FFF;		
+}
+
+#centre-details {
+	text-align:			right;
+}
+
+.note-container {
+	width: 97%;
+}
+
+
+#toaster-container {
+display:none;
+margin: 0 0 6px;
+padding: 15px 15px 20px 50px;
+background-color:#51a351;
+opacity:0.8;
+}
+
+#toaster-container-error{
+display:none;
+margin: 0 0 6px;
+padding: 15px 15px 20px 50px;
+background-color:#bd362f;
+opacity:0.8;
+}
+
+#toaster-container-info{
+display:none;
+margin: 0 0 6px;
+padding: 15px 15px 20px 50px;
+background-color:#F09609;
+opacity:0.8;
+}
+
+#toaster-container:hover {
+opacity:1;
+cursor:pointer;
+}
+
+#toaster-container-error:hover {
+opacity:1;
+cursor:pointer;
+}
+
+#toaster-container-info:hover {
+opacity:1;
+cursor:pointer;
+}
+
+.toast-title {
+  font-weight: bold;
+  color:#fff;
+  position:relative;
+  left:-1.4em;
+}
+.toast-message {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  color:#fff;
+  position:relative;
+  left:-1.4em;
+}
+
+
+.toast-close-button {
+  position: relative;
+  right: -0.3em;
+  top: -0.3em;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  -webkit-text-shadow: 0 1px 0 #ffffff;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.8;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
+}
+.toast-close-button:hover,
+.toast-close-button:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.4;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  filter: alpha(opacity=40);
+}
+button.toast-close-button {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+.toaster-tick {
+font-size:25px;
+position:relative;
+float:left;
+left:-1.45em;
+top: 0.3em;
+}
+
+
+#working{
+display:none;
+position: fixed;
+    -moz-transition: all 0.6s ease-in-out;
+    -webkit-transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+    z-index: 100000;
+top: 0px;
+left: 40%;
+opacity: 1;
+color: #fff;
+background-color:#7FB8E2;
+padding-left: 25px;
+padding-right: 25px;
+padding-top: 7px;
+padding-bottom: 7px;
+text-align: center;
+border: solid 1px;
+border-color:#0072C6;
+}
+
+
+
+
+/*  END OF MICROSOFT ELEMENTS */
+
+
+
+
+
+
+/* ------------------------------------------------------------------------- STYLES FOR LARGE SCREENS -------------------------------------------------------------------------------------- */
+.sidebar-nav {margin-left:0px;}
+
+.menuItem {display:none;}
+
+.menuOption {
+background:#0072C6;
+margin-top: 8px;
+margin-bottom:-5px;
+margin-right:-10px;
+margin-left:-10px;
+padding: 15px 10px 15px 10px;
+text-align:center;
+border: solid 1px #FFF;
+}
+
+.menuOptionShell  a {
+color:#FFF;
+text-decoration:none;
+cursor:pointer;
+}
+
+.menuOption:hover, .menuOption:focus {
+    background-color: #0067B0;
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+}
+
+.subMenuOption  {
+background:#7FB8E2;
+margin-top: 8px;
+margin-bottom:-5px;
+margin-right:-5px;
+margin-left:-5px;
+padding: 10px 10px 10px 10px;
+text-align:center;
+border: solid 1px #FFF;
+}
+
+
+.subMenuOptionShell   a {
+color:#fff;
+text-decoration:none;
+}
+
+.subMenuOption:hover, .subMenuOption:focus {
+    background-color: #0072C6;
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+}
+
+#nav-container {padding-bottom:-10px;background-color:#0072C6;margin-left:25px; width:16%;}
+
+/* ------------------------------------------------------------------------- STYLES FOR MID SIZE SCREENS -------------------------------------------------------------------------------------- */
+
+
+@media (max-width: 1230px) {
+
+#DETEPortalHeader {padding-left:0px;padding-right:0px;margin-top:-13px;}
+
+.page-content-wrapper {padding:13px;z-index:50;background-color:#FFF;}
+
+.page-header {z-index:50;background-color:#FFF;margin-top:-8px;margin-bottom:-8px;}
+
+.panel-group, #content-container{z-index:50;background-color:#FFF;}
+
+#nav-container {height:60px;width:96.5%;margin-left:18px;margin-right:22px;margin-top:0px;margin-bottom:10px;padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;}
+
+#left-nav {width:100%;margin-left:0px;margin-right:20px;margin-top:0px;margin-bottom:0px;padding-left:5px;padding-right:5px;padding-top:0px;padding-bottom:0px;}
+
+.menuOption{height:50px;margin-left:1px;margin-right:1px;margin-top:5px;margin-bottom:5px;padding-left:4px;padding-right:4px;font-size:15px;}
+
+.subMenuOption{margin-left:0px;margin-right:0px;margin-top:0px;margin-bottom:0px;padding-left:3px;padding-right:3px;padding-top:3px;padding-bottom:3px;}
+
+.menuOptionShell {display:inline-block;width:20%;margin-left:0px;margin-right:0px;margin-top:0px;margin-bottom:0px;padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;}
+
+.subMenuOptionShell {position:relative;float:right;clear:both;z-index:99;width:100%;}
+
+#content-container{width: 97%;margin-left:15px;margin-right:25px;padding:3px;}
+#user-details, #notes-details {width: 100%;margin-left:3px;padding-bottom:5px;padding-right:20px;padding-left:20px;text-align:center;}
+#centre-details {}
+.entity-info {text-align:left;}
+#notes-container {width: 100%;padding:10px;text-align:center;}
+.control-label {text-align:right;}
+
+
+}
+
+@media (max-width: 768px) {
+
+.page-header {margin-top:-10px;margin-bottom:10px;}
+
+#nav-container {
+height:auto; 
+overflow:hidden;
+background:#fff;
+}
+.navbar-header {background:#DFEDF8;margin-left:-10px;}
+.menuOption {margin-bottom:0px;margin-top:0px;padding:10px;text-align:left;}
+.subMenuOption {height:50px;margin-bottom:0px;margin-top:0px;padding-left:4px;padding-right:4px;font-size:15px;padding:10px;text-align:left;margin-left:1px;margin-right:1px;}
+
+.menuOptionShell  {width:100%;}
+.subMenuOptionShell  {width:100%;}
+
+.navbar-header {background-color:#0072C6;}
+.navbar-default .navbar-toggle {
+	border-color:		#FFF;
+	background-color:	#0072C6;
+}
+.navbar-default .navbar-brand {
+color: #FFF;
+padding-left:20px;
+}
+.navbar-default:hover .navbar-brand :hover{
+color: #FFF;
+}
+
+#left-nav {background-color:	#0072C6;padding-top:2px;padding-bottom:5px;}
+
+
+}
+
+
+/* ------------------------------------------------------------------------- STYLES FOR MOBILE / SMALL SCREENS -------------------------------------------------------------------------------------- */

@@ -1,0 +1,32 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#selfManagedBulkUpdate">
+          Self Managed / Default Bulk Change
+        </a>
+      </h4>
+    </div>
+    <div id="selfManagedBulkUpdate" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised">  
+	  	
+		<div id="smartTableSelfManaged"
+			smart-table
+            ng-show="model.smartTableSelfManaged"
+            class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+            rows="model.smartTableSelfManagedRows"
+            columns="model.smartTableSelfManagedColumns"
+            config="model.smartTableSelfManagedConfig">
+        </div>
+			
+		<button id="emailBtn" class="btn btn-primary" ng-click="emailReport()" spinner-button>Email Report</button>
+		
+		<button id="exportButton" class="btn btn-primary" ng-csv="model.smartTableSelfManagedRows" filename="self-managed-bulk-update-report.csv">Export</button>
+		
+		<button id="saveButton" class="btn btn-success" ng-click="saveChanges()" ng-show="model.saveChanges" spinner-button>Save Changes</button>
+	  
+      </div>
+    </div>
+  </div>
+
+</div>

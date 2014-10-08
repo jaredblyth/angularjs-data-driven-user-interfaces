@@ -1,0 +1,102 @@
+'use strict';
+
+angular.module('xApp',
+    [
+        'xApp.services',
+        'xApp.controllers',
+        'xApp.directives',
+        'ui.bootstrap',
+        'smartTable.table',
+        'utils.formatters',
+        'utils.smartTable',
+        'utils.date',
+        'textAngular',
+        'config',
+        'ui.router'
+    ]
+);
+
+angular.module('xApp.controllers',
+    [
+        'controller.roles',
+        'controller.shell',
+        'controller.filterPackages.generatereport',
+        'controller.filterPackages.displayreport',
+        'controller.filterPackages.edit',
+        'controller.filterPackages.selectexternallist',
+        'controller.filterPackages.selecttemplate',
+        'controller.filterPackages.viewtemplate',
+        'controller.filterPackages.edittemplate',
+        'controller.filterPackages.view',
+        'controller.lists.edit',
+        'controller.lists.view',
+        'controller.lists.itemedit',
+        'controller.lists.viewListDependencies',
+        'controller.listTypes.view',
+        'controller.listTypes.edit',
+        'controller.schoolMessages.view',
+        'controller.schoolMessage.edit',
+        'controller.modules.assign',
+        'controller.modules.neweditfunction',
+        'controller.modules.neweditmodule',
+        'controller.modules.view',
+        'controller.selfManaged',
+        'controller.filterCheck',
+        'controller.proxyClientFilterCheck',
+        'controller.permanentlyBlocked.view',
+        'controller.permanentlyBlocked.edit',
+        'controller.reports.urlCategorisationReport',
+        'controller.reports.urlUnblockReport',
+        'controller.reports.viewUrlUnblockReport',
+        'controller.reports.viewUrlCategorisationReport',
+        'controller.reports.viewActiveModules',
+        'controller.reports.schoolActiveModules',
+        'controller.confirmdeny',
+        'controller.bulkfile',
+        'controller.preferences',
+        'controller.deviceFiltering',
+		'controller.deviceFiltering.selectusergroup',
+        'controller.downloadQuotas',
+        'controller.downloadQuotas.selectusers',
+        'controller.internetadmin',
+        'controller.manageSchools',
+        'controller.policyChanges'
+
+    ]
+);
+
+angular.module('xApp.directives',
+    [
+        'directives.menuitems',
+		'directives.downloader',
+        'directives.button.spinner',
+        'directives.validation.uivalidate'
+    ]
+);
+
+angular.module('xApp.services',
+    [
+        'services.shell',
+        'services.preferences',
+        'services.deviceFiltering',
+        'services.userSearch',
+        'services.groupSearch',
+        'services.downloadQuotas',
+        'services.internetAdmin',
+		'services.smartSearch',
+        'services.schoolSmartSearch',
+        'services.selfManaged',
+        'services.policyTypes',
+        'services.modules',
+        'services.lists',
+        'services.filterPackages',
+        'services.listTypes',
+        'services.filterCheck',
+        'services.changeSets',
+        'services.changeSets.status',
+        'services.permanentlyBlocked',
+        'services.schoolMessages',
+        'services.reports',
+        'services.policyChanges'
+    ]
+);

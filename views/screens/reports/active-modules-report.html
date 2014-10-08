@@ -1,0 +1,45 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#activeModulesReport">
+          Active Modules Report
+        </a>
+      </h4>
+    </div>
+    <div id="activeModulesReport" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised"> 
+	  	
+		<div id="smartTableActiveModulesReports"
+			smart-table
+            ng-show="model.smartTableActiveModulesReports"
+            class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+            rows="model.smartTableActiveModulesReportsRows"
+            columns="model.smartTableActiveModulesReportsColumns"
+            config="model.smartTableActiveModulesReportsConfig">
+        </div>
+			
+		<button id="emailBtn" class="btn btn-primary" ng-show="model.smartTableActiveModulesReports" ng-click="emailReport()" spinner-button>Email Report</button>
+		
+		<button id="exportButton" class="btn btn-primary" ng-show="model.smartTableActiveModulesReports" ng-csv="model.smartTableActiveModulesReportsRows" filename="active-modules-report.csv">Export</button>
+		
+		
+		<h3 class="ng-scope" ng-show="model.smartTableModules">{{model.schoolName}}</h3>
+		
+		<div id="smartTableModules"
+			smart-table
+            ng-show="model.smartTableModules"
+            class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+            rows="model.smartTableModulesRows"
+            columns="model.smartTableModulesColumns"
+            config="model.smartTableModulesConfig">
+        </div>
+
+
+		<button id="displayClose" class="btn" ng-click="displayClose()" ng-show="model.smartTableModules">Close</button>
+
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-title">
+            <button type="button" class="close" ng-click="cancel()" aria-hidden="true">×</button>
+            <h3>School Preferences</h3>
+        </div>
+
+        <div class="modal-body" ng-switch="model.initialised">
+            <form novalidate name="schoolPreferencesForm" class="css-form form" role="form" ng-submit="submit(schoolPreferencesForm)">
+                <div ng-switch-when="true">
+                     Send Download Exceeded email for newly suspended Internet users only?&nbsp;&nbsp;&nbsp;
+                     <input id="preferenceValue" class="checkbox-inline" type="checkbox" ng-model="model.preferenceValue" ng-checked="model.checked"/>
+                </div>
+
+                <div ng-switch-default>
+                    <img class="loader" src="/img/ajax-loader.gif" width="32" height="32">
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="submit(schoolPreferencesForm)" ng-disabled="!model.initialised" spinner-button spinner-button-lock="false">Save</button>
+            <button class="btn" ng-click="cancel()" aria-hidden="true">Cancel</button>
+        </div>
+
+    </div>
+</div>

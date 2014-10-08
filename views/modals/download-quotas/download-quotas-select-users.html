@@ -1,0 +1,24 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-title">
+            <button type="button" class="close" ng-click="cancel()" aria-hidden="true">×</button>
+            <h3>Select Users</h3>
+        </div>
+
+        <div class="modal-body">
+            <div smart-table 
+				class="table table-bordered table-striped clear-right small-scrolling-table"
+                rows="model.smartTableSelectRows" 
+				columns="model.smartTableSelectColumns"
+                config="model.smartTableSelectConfig">
+			</div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="select()">Select</button>
+            <button class="btn" ng-click="cancel()" aria-hidden="true">Close</button>
+        </div>
+		
+
+    </div>
+</div>

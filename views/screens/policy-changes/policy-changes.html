@@ -1,0 +1,163 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#policyChanges">
+          Policy Changes
+        </a>
+      </h4>
+    </div>
+    <div id="policyChanges" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised"> 
+	  
+			<form novalidate id="policyChangesForm" name="policyChangesForm" class="css-form form" role="form">
+			
+				<div class="tablePolicyChanges" class="form-group">
+				
+				
+				
+				<div class="rowPolicyChanges" class="form-group">
+				
+				<span class="cellPolicyChanges" class="form-group">
+					<h3 class="ng-scope">From</h3>
+					<input id="createDate" name="createDate" type="text" placeholder="use dd/mm/yyyy"
+						class="form-control input-sm" ng-model="model.createDate"
+						ng-pattern="/^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/" required />
+						<span class="help-inline-xlarge" ng-show="showError(policyChangesForm.createDate,'pattern')">The date must follow the pattern dd/mm/yyyy</span>
+						<span class="help-inline-xlarge" ng-show="showError(policyChangesForm.createDate,'required')">You must specify a start date</span>
+				</span>
+				
+				<span class="cellPolicyChanges">
+				<h3 class="ng-scope">To</h3>
+				<input id="endDate" name="endDate" type="text" placeholder="use dd/mm/yyyy"
+					class="form-control input-sm" ng-model="model.endDate"
+					ng-pattern="/^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/" 
+					freeform-date-validation
+                    freeform-date-after="{{ model.createDate }}"
+					ng-required="model.showToRange" />
+					<span class="help-inline-xlarge" ng-show="showError(policyChangesForm.endDate,'freeformdateafter')">The date must be the same or after From Date</span>
+					<span class="help-inline-xlarge" ng-show="showError(policyChangesForm.endDate,'pattern')">The date must follow the pattern dd/mm/yyyy</span>
+					<span class="help-inline-xlarge" ng-show="showError(policyChangesForm.endDate,'required')">You must specify an end date</span>
+				</span>
+				
+				</div>
+				
+				
+				<div class="rowPolicyChanges">
+				
+				<span class="cellPolicyChanges">
+					<h3 class="ng-scope">MIS ID</h3>
+					<input id="misId" name="misId" type="text"  placeholder="(optional)"
+						class="form-control input-sm" ng-model="model.misId" />
+				</span>
+				
+				<span class="cellPolicyChanges">
+				<h3 class="ng-scope">Centrecode</h3>
+				<input id="centreCode" name="centreCode" type="text"  placeholder="(optional)"
+					class="form-control input-sm" ng-model="model.centreCode" />
+				</span>
+				
+				</div>
+				
+				
+				
+				</div>
+				
+				<button id="refreshButtonPolicyChanges" class="btn btn-success" ng-click="buildQuery(policyChangesForm)" spinner-button>Refresh</button>
+				
+				<button id="emailButtonPolicyChanges" class="btn btn-primary" ng-click="email()" spinner-button>Email</button>
+				
+				<button id="exportButtonPolicyChanges" class="btn btn-primary" ng-csv="model.smartTablePolicyChangesRows" filename="policy-changes.csv">Export</button>
+			
+			</form>
+			
+			<h3 class="ng-scope">Details of Policy Changes</h3>
+			
+			<div id="smartTablePolicyChanges" st-table="rowCollection"
+				smart-table
+                ng-show="model.smartTablePolicyChanges"
+                class="smarttable table table-bordered table-striped clear-right"
+                rows="model.smartTablePolicyChangesRows"
+                columns="model.smartTablePolicyChangesColumns"
+                config="model.smartTablePolicyChangesConfig">
+            </div>
+	  
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default" ng-show="model.policyChangesDetails">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#policyChangesDetails">
+          View Policy Change Items
+        </a>
+      </h4>
+    </div>
+    <div id="policyChangesDetails" class="panel-collapse collapse">
+      <div class="panel-body" ng-switch="model.initialised">
+	  
+	  
+		<div id="details" ng-show="model.policyChangesDetails" class="form-horizontal">
+			
+			<div class="form-group ng-scope">
+				<label class="col-md-5 col-sm-6 col-xs-6 control-label">ID</label>
+				<div class="col-md-7 col-sm-3 col-xs-6"><p class="form-control-static ng-binding">
+				<span>{{id}}</span></p></div>
+			</div>
+			
+			<div class="form-group ng-scope">
+				<label class="col-md-5 col-sm-6 col-xs-6 control-label">Status</label>
+				<div class="col-md-7 col-sm-3 col-xs-6"><p class="form-control-static ng-binding">
+				<span>{{status}}</span></p></div>
+			</div>
+			
+			<div class="form-group ng-scope">
+				<label class="col-md-5 col-sm-6 col-xs-6 control-label">Created</label>
+				<div class="col-md-7 col-sm-3 col-xs-6"><p class="form-control-static ng-binding">
+				<span>{{createTime | date:'dd-MM-yyyy HH:mm:ss'}}</span></p></div>
+			</div>
+			
+			<div class="form-group ng-scope">
+				<label class="col-md-5 col-sm-6 col-xs-6 control-label">Start Time</label>
+				<div class="col-md-7 col-sm-3 col-xs-6"><p class="form-control-static ng-binding">
+				<span>{{startTime | date:'dd-MM-yyyy HH:mm:ss'}}</span></p></div>
+			</div>
+			
+			<div class="form-group ng-scope">
+				<label class="col-md-5 col-sm-6 col-xs-6 control-label">End Time</label>
+				<div class="col-md-7 col-sm-3 col-xs-6"><p class="form-control-static ng-binding">
+				<span>{{endTime | date:'dd-MM-yyyy HH:mm:ss'}}</span></p></div>
+			</div>
+			
+			<div class="form-group ng-scope">
+				<label class="col-md-5 col-sm-6 col-xs-6 control-label">Message</label>
+				<div class="col-md-7 col-sm-3 col-xs-6"><p class="form-control-static ng-binding">
+				<span>{{message}}</span></p></div>
+			</div>
+			
+			<div class="form-group ng-scope">
+				<label class="col-md-5 col-sm-6 col-xs-6 control-label">Generated File Path</label>
+				<div class="col-md-7 col-sm-3 col-xs-6"><p class="form-control-static ng-binding">
+				<span>{{generatedFilePath}}</span></p></div>
+			</div>
+			
+		</div>
+	  
+	  
+		<div id="smartTablePolicyDetails" st-table="rowCollection"
+			smart-table
+			ng-show="model.smartTablePolicyDetails"
+            class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+            rows="model.smartTablePolicyDetailsRows"
+            columns="model.smartTablePolicyDetailsColumns"
+            config="model.smartTablePolicyDetailsConfig">
+            </div>
+
+		<button id="closePolicyChanges" class="btn" ng-click="close()">Close</button>
+		
+	  </div>
+    </div>
+  </div>
+  
+</div>

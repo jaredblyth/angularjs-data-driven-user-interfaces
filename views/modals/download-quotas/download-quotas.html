@@ -1,0 +1,139 @@
+<style>
+#ajaxLoaderGif {position:absolute;left:250px;top:200px;visibility:hidden;}
+form {border-style:solid;border-weight:0.5px;border-color:#f0f0f0;padding:10px;}
+label {padding-top:25px;}
+button {margin-top:5px;}
+.smarttable {margin-top:10px;}
+.top-label {padding-top:0px;}
+input {padding-right:10px;}
+input[type=radio] + label {display:inline-block;margin-right:30px;font-weight:normal;padding-top:10px;}
+/*.download-value-cell {border-style:solid;border-weight:0.5px,border-color:grey}*/
+</style>
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-title">
+            <button type="button" class="close" ng-click="cancel()" aria-hidden="true">×</button>
+            <h3>Download Quota</h3>
+        </div>
+
+        <div class="modal-body" ng-switch="model.initialised">
+
+            <div ng-switch-when="true">
+
+                <img id="ajaxLoaderGif" src="/img/ajax-loader.gif"/>
+				
+				<form name="typeForm" class="form">
+				
+					<label class="top-label">Modify the quotas on</label>
+
+                    <input type="radio" id="radioGroup" ng-model="model.type" ng-change="changeToGroup()" value="Group">
+                    <label for="radioGroup">Group</label>
+
+                    <input type="radio" id="radioUser" ng-model="model.type" ng-change="changeToUser()" value="User">
+                    <label for="radioUser">User</label>
+				
+				</form>
+				
+				<div class="form-group" ng-show="user">
+					<form name="userTypeForm" class="form">
+                    
+						<label class="top-label">Select user(s)</label>
+
+						<input type="radio" id="radioLastName" ng-model="model.userType" ng-change="changeToTextboxLastName()" value="Last name">
+						<label for="radioLastName">Last name</label>
+
+						<input type="radio" id="radioMisId" ng-model="model.userType" ng-change="changeToTextboxMisId()" value="MIS ID">
+						<label for="radioMisId">MIS ID</label>
+
+						<input type="radio" id="radioList" ng-model="model.userType" ng-change="changeToDropdown()" value="List">
+						<label for="radioList">List</label>
+
+					</form>
+				</div>
+				
+				
+				<div ng-show="group">
+					<label>Group Download Quotas</label>
+					<div id="smarttableGroups"
+                         smart-table
+                         ng-show="smartTableGroups"
+                         class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+                         rows="model.smartTableGroupsRows"
+                         columns="model.smartTableGroupsColumns"
+                         config="model.smartTableGroupsConfig">
+                    </div>
+				</div>
+				
+				
+				<form name="userTypeForm" class="form">
+				<div class="form-group" ng-show="user">
+					<label ng-show="user">Selected Users(s)</label>
+					
+					<div class="form-group" ng-show="textboxLastName" >
+                        <input id="textboxLastName" name="textboxLastName" ng-show="textboxLastName" ng-model="model.lastName"
+                               type="text" class="form-control input-sm"  placeholder="Enter a full or partial Last Name"
+                               ng-pattern="/^[a-zA-Z]+$/" ng-minlength="2" ng-maxlength="20"/>
+                        <span ng-show="showError(userTypeForm.textboxLastName, 'pattern')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name is invalid</span>
+                        <span ng-show="showError(userTypeForm.textboxLastName, 'minlength')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name must be at least 2 characters</span>
+                        <span ng-show="showError(userTypeForm.textboxLastName, 'maxlength')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name must be less than 20 characters</span>
+                    </div>
+                    <button class="btn btn-primary" ng-show="textboxLastName" ng-click="getUserByLastName(userTypeForm)" ng-disabled="!model.initialised">Search</button>
+
+
+
+                    <div class="form-group" ng-show="textboxMisId">
+                        <input id="textboxMisId" name="textboxMisId"  ng-show="textboxMisId" ng-model="model.misId" class="form-control input-sm" autofocus placeholder="Enter a MIS ID"
+                               ng-pattern="/^[0-9a-zA-Z]+$/" ng-minlength="5" ng-maxlength="11"/>
+                        <span ng-show="showError(userTypeForm.textboxMisId, 'pattern')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name is invalid</span>
+                        <span ng-show="showError(userTypeForm.textboxMisId, 'minlength')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name must be at least 5 characters</span>
+                        <span ng-show="showError(userTypeForm.textboxMisId, 'maxlength')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name must be less than 11 characters</span>
+                    </div>
+                    <button class="btn btn-primary" ng-show="textboxMisId" ng-click="getUserByMisId(userTypeForm)" ng-disabled="!model.initialised">Search</button>
+
+                    <select ng-show="dropdown" ng-model="model.selectedGroup" ng-options="group.name for group in model.dropDownOptions" ng-change="updateSelectedList()" class="form-control">
+                    </select>
+				
+				</div>
+				</form>
+				
+				
+				<div ng-show="user">
+					<label ng-show="userSelected">Selected Users Download Quotas</label>
+					<div id="smarttableUsers"
+                         smart-table
+                         ng-show="smartTableUsers"
+                         class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+                         rows="model.smartTableUsersRows"
+                         columns="model.smartTableUsersColumns"
+                         config="model.smartTableUsersConfig">
+                    </div>
+				</div>
+				
+				
+				<div class="form-group" ng-show="userSelected">
+					<form name="userMbForm" class="form">
+                    
+						<label>Enter the total quota value you want assigned to each user in MB: <input ng-model="model.mbValue" value="" style="width:30px;"/></label>
+
+					</form>
+				</div>
+				
+				
+
+            </div>
+
+            <div ng-switch-default>
+                <img class="loader" src="/img/ajax-loader.gif" width="32" height="32">
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="submit()" ng-disabled="!model.initialised" spinner-button>Submit</button>
+            <button class="btn" ng-click="cancel()" aria-hidden="true">Cancel</button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,3 @@
+<button class="btn btn-danger btn-round pull-right smart-table-delete" ng-click="$emit('delete', dataRow)" ng-hide="dataRow._mayDelete"><i class="glyphicon glyphicon-trash icon-white"></i></button>
+<button class="btn btn-round pull-right smart-table-undelete" ng-click="$emit('undelete', dataRow)" ng-show="dataRow._mayUnDelete"><i class="glyphicon glyphicon-repeat"></i></button>
+<button class="btn btn-info btn-round pull-right smart-table-edit" ng-click="$emit('edit', dataRow)" ng-hide="dataRow._mayEdit"><i class="glyphicon glyphicon-pencil"></i></button>

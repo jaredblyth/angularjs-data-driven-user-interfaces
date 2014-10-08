@@ -1,0 +1,59 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#permanentlyBlocked">
+          Permanently Blocked Sites
+        </a>
+      </h4>
+    </div>
+    <div id="permanentlyBlocked" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised">
+
+			<button id="addNewSite" class="btn btn-success" ng-click="addNewSite()"><i class="glyphicon glyphicon-plus icon-white"></i>&nbsp;Add New Site</button>	  
+	  
+			<div id="smarttablePermanentlyBlockedSites"
+				smart-table
+                ng-show="model.smarttablePermanentlyBlockedSites"
+                class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+                rows="model.smarttablePermanentlyBlockedSitesRows"
+                columns="model.smarttablePermanentlyBlockedSitesColumns"
+                config="model.smarttablePermanentlyBlockedSitesConfig">
+            </div>
+			
+			
+			
+			<form novalidate name="addSiteForm" ng-show="model.addSite" class="css-form form" role="form">
+				<div>
+				<h3 class="ng-scope">Add Permanently Blocked Site</h3>
+				<input id="addSiteInput" type="text" class="form-control" placeholder="E.g. permanently.blocked.site.com" ng-model="model.newSite" required />
+					<span ng-show="showError(addSiteForm,'required')" class="help-inline-xlarge">
+                        <i class="glyphicon glyphicon-warning-sign"></i> URL must be provided</span>
+				</div>
+				<button class="btn btn-success" ng-disabled="!model.initialised" ng-click="addNewConfirm(addSiteForm)" spinner-button>Add</button>
+				<button class="btn" ng-disabled="!model.initialised" ng-click="addNewCancel()">Cancel</button>
+			</form>
+			
+			
+			
+			<form novalidate name="editSiteForm" ng-show="model.editSite" class="css-form form" role="form">
+				<div>
+				<h3 class="ng-scope">Update Permanently Blocked Site</h3>
+				<input id="editSiteInput" type="text" class="form-control" placeholder="E.g. permanently.blocked.site.com" ng-model="model.updatedSite" required />
+					<span ng-show="showError(editSiteForm,'required')" class="help-inline-xlarge">
+                        <i class="glyphicon glyphicon-warning-sign"></i> URL must be provided</span>
+				</div>
+				<button class="btn btn-success" ng-disabled="!model.initialised" ng-click="editConfirm(editSiteForm)" spinner-button>Update</button>
+				<button class="btn" ng-disabled="!model.initialised" ng-click="editCancel()">Cancel</button>
+			</form>
+			
+			
+			<button id="saveChanges" class="btn btn-success" ng-show="model.saveChanges" ng-click="saveChanges()">Save Changes</button>
+			
+			
+			
+      </div>
+    </div>
+  </div>
+
+</div>

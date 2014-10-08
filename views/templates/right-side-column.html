@@ -1,0 +1,36 @@
+<div id="notes-container" class="col-md-3 col-sm-12">
+    <div id="user-details" ng-switch="model.initialised">
+
+        <div class="entity-info" ng-switch-when="true">
+            <h3><a class="ng-binding" href="#">{{displayName}}</a></h3>
+            <h4 class="ng-binding">{{misId}}</h4>
+            <h4 id="centre-details">{{school}} {{displaySchoolCentreCode}}</h4>
+        </div>
+        <div ng-switch-default>
+            <!--<img id="entity-spinner" class="loader" src="/intadmin/img/ajax-loader.gif" width="32" height="32">-->
+         </div>
+    </div>
+
+    <div id="notes-details" class="note-container" ng-switch="model.initialised">
+        <p id="entity-message" ng-bind-html="message"></p>
+		
+		<div id="toaster-container" class="toaster-container" ng-click="toasterClose()">
+			<span class="glyphicon glyphicon-ok icon-white toaster-tick" style="margin-bottom:30px;"></span>
+			<button type="button" class="toast-close-button" ng-click="toasterClose()">×</button>
+			<div id="savedTitle" class="toast-title">Success</div>
+			<div id="savedMessage" class="toast-message">{{toastMessage}}</div>
+		</div>
+		<div id="toaster-container-error" class="toaster-container" ng-click="toasterErrorClose()">
+			<span class="glyphicon glyphicon-exclamation-sign icon-white toaster-tick" style="margin-bottom:30px;"></span>
+			<button type="button" class="toast-close-button" ng-click="toasterErrorClose()">×</button>
+			<div id="errorTitle" class="toast-title">Error</div>
+			<div id="errorMessage" class="toast-message">{{toastMessageError}}</div>
+		</div>
+		<div id="toaster-container-info" class="toaster-container" ng-click="toasterInfoClose()">
+			<span class="glyphicon glyphicon-warning-sign icon-white toaster-tick" style="margin-bottom:30px;"></span>
+			<button type="button" class="toast-close-button" ng-click="toasterInfoClose()">×</button>
+			<div id="infoTitle" class="toast-title">Info</div>
+			<div id="infoMessage" class="toast-message">{{toastMessageInfo}}</div>
+		</div>
+    </div>
+</div>

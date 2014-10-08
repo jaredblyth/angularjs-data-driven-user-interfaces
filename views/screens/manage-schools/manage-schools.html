@@ -1,0 +1,41 @@
+<script type="text/ng-template" id="customTemplate.html">
+	<a style="cursor:pointer;">
+		<span>{{match.model.displayName}}</span>
+		<span>({{match.model.centreCode}})</span>
+	</a>
+</script>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#manageSchools">
+          Manage Schools
+        </a>
+      </h4>
+    </div>
+    <div id="manageSchools" class="panel-collapse collapse in">
+      <div class="panel-body">
+
+		<button class="btn btn-default" ng-show="revert" style="float:right;" ng-click="revertToDefaultSchool()">Return to Default School</button>
+		<p>You are currently administering {{currentSchoolName}}</p>
+		
+		<h3 class="ng-scope">Change Current School</h3>
+	  
+		<div id="searchBoxGroup" class="input-group">
+			<input id="searchBox" type="text" class="form-control" placeholder="Search for a school by name or centre code" autofocus 
+			ng-model="model.smartSearchPhrase" typeahead-min-length="2" typeahead="result.screenName for result in model.smartSearchResults($viewValue)"
+			typeahead-template-url="customTemplate.html" typeahead-on-select="onSelect($item, $model, $label)" ng-change="validate()"/>				
+				<span class="input-group-btn">
+						<button id="searchBoxButton" class="btn btn-default" type="button" ng-click="smartSearchResults()" title="Please type something into the search box">
+							<span class="glyphicon glyphicon-search"></span>&nbsp;Search
+						</button>
+				</span>
+		</div>
+		<div id="smartSearchValidationError" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Search term must be at least 2 characters</div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

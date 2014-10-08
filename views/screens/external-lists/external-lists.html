@@ -1,0 +1,215 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#externalLists">
+          Current External Lists
+        </a>
+      </h4>
+    </div>
+    <div id="externalLists" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised"> 
+	  
+		<div id="smartTableCurrentLists" st-table="rowCollection"
+			smart-table
+            ng-show="model.smartTableCurrentLists"
+            class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+            rows="model.smartTableCurrentListsRows"
+            columns="model.smartTableCurrentListsColumns"
+            config="model.smartTableCurrentListsConfig">
+        </div>
+		
+		<button id="saveCurrentListsButton" class="btn btn-success" ng-show="model.saveChanges" ng-click="save()" spinner-button>Save Changes</button>
+		<button id="addNewCurrentListButton" class="btn btn-success" ng-show="model.smartTableCurrentLists" ng-click="addExternalList()"><i class="glyphicon glyphicon-plus icon-white"></i>&nbsp;Add New External List</button>
+	  
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default" ng-show="model.addExternalList">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#addExternalLists">
+          {{model.mode}} External List
+        </a>
+      </h4>
+    </div>
+    <div id="addExternalLists" class="panel-collapse collapse">
+      <div class="panel-body" ng-switch="model.initialised"> 
+	  
+		<form novalidate name="addExternalListForm" class="css-form form" role="form">
+		
+			<div class="tableExternalLists" class="form-group">
+
+				<div class="rowExternalLists" class="form-group">
+		
+			<span class="cellExternalLists" class="form-group">
+			<h3 class="ng-scope">List Name</h3>
+			<input id="listName" name="listName" type="text" placeholder="List Name"
+                class="form-control input-sm" ng-model="model.listName" required />
+            <span class="help-inline-xlarge" ng-show="showError(addExternalListForm.listName,'required')">Name must be provided</span>
+			</span>
+			
+			<span class="cellExternalLists" class="form-group">
+			<h3 class="ng-scope">Category</h3>
+			<input id="category" name="category" type="text" placeholder="Edit category here"
+                class="form-control input-sm" ng-model="model.listCategory">
+			</span>
+			
+				</div>
+				
+				
+				<div class="rowExternalLists">
+			
+			<span class="cellExternalLists" class="form-group">
+			<h3 class="ng-scope">List Type</h3>
+			<select id="listType" ng-model="model.listType" ng-options="t as t.name for t in model.listTypes track by t.id" class="form-control" style="cursor:pointer;" required />
+            <span class="help-inline-xlarge" ng-show="showError(addExternalListForm.listType,'required')">Type must be provided</span>
+			</select>
+			</span>
+			
+			<span class="cellExternalLists" class="form-group">
+			<h3 class="ng-scope">Description</h3>
+			<textarea id="description" name="description" type="text" placeholder="Description" ng-minlength="2" ng-maxlength="500"
+                class="form-control input-sm" ng-model="model.listDescription" required></textarea>
+            <span ng-show="showError(addExternalListForm.description, 'required')"
+                class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i>Description must be provided</span>
+            <span ng-show="showError(addExternalListForm.description, 'minlength')"
+                class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i>Description must be at least 2 characters</span>
+            <span ng-show="showError(addExternalListForm.description, 'maxlength')"
+                class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i>Description must be less than 500 characters</span>
+			</span>
+			
+				</div>
+				
+				<div class="rowExternalLists">
+			
+			<span class="cellExternalLists" class="form-group">
+			<h3 class="ng-scope">List Items</h3>	
+			<div id="smartTableListItems" st-table="rowCollection"
+			smart-table
+            class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+            rows="model.smartTableListItemsRows"
+            columns="model.smartTableListItemsColumns"
+            config="model.smartTableListItemsConfig">
+			</div>
+			<button id="addNewListItemButton" class="btn btn-success" ng-click="addListItem()"><i class="glyphicon glyphicon-plus icon-white"></i>&nbsp;Add New List Item</button>
+			<button id="importListItemsButton" class="btn btn-success" ng-click="importListItems()">Bulk Import</button>
+			<button id="externalListItemsExportButton" class="btn btn-primary" ng-csv="model.smartTableListItemsRows" filename="external-list-items-report.csv">Export</button>
+			<button id="deleteAllListItemsButton" class="btn btn-danger" ng-click="deleteAllListItems()">Delete All</button>
+			
+				</span>
+			
+			<span class="cellExternalLists" class="form-group">
+			<h3 class="ng-scope">Permissions</h3>
+			<div id="smartTablePermissions" st-table="rowCollection"
+			smart-table
+            class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+            rows="model.smartTablePermissionsRows"
+            columns="model.smartTablePermissionsColumns"
+            config="model.smartTablePermissionsConfig">
+			</div>
+			
+			</span>
+			
+				</div>
+			
+			</div>
+			
+			<button id="cancelAddExternalListsButton" class="btn" ng-click="cancelAddExternalList()">Cancel</button>
+			<button id="addExternalListsButton" class="btn btn-success" ng-click="addLists()" ng-hide="model.update">Add New List</button>
+			<button id="updateExternalListsButton" class="btn btn-success" ng-click="updateLists()" ng-show="model.update">Update List</button>
+			
+		
+		</form>
+	  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+    <div class="panel panel-default" ng-show="model.addListItem">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#listItems">
+          {{model.modeList}} List Item
+        </a>
+      </h4>
+    </div>
+    <div id="listItems" class="panel-collapse collapse">
+      <div class="panel-body" ng-switch="model.initialised">
+
+			<form novalidate name="addListItemForm" class="css-form form" role="form">
+		
+			<div class="tableExternalLists" class="form-group">
+
+				<div class="rowExternalLists" class="form-group">
+					
+					<span class="cellExternalLists" class="form-group">
+					<h3 class="ng-scope">Value</h3>
+					<input id="listItemValue" name="listItemValue" type="text" placeholder="Value"
+					class="form-control input-sm" ng-model="model.listItemValue" />
+					<span class="help-inline-xlarge" ng-show="showError(addListItemForm.listItemValue,'required')">Value must be provided</span>
+					</span>
+					
+					<span class="cellExternalLists" class="form-group">
+					<h3 class="ng-scope">Start Date</h3>
+					<input id="listItemStartDate" name="listItemStartDate" type="text" placeholder="use dd/mm/yyyy format" 
+					class="form-control input-sm" ng-model="model.listItemStartDate"
+					ng-pattern="/^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/" />
+					<span class="help-inline-xlarge" ng-show="addListItemForm.listItemStartDate.$error.pattern">Start date must be provided in dd/mm/yyyy format</span>
+					</span>
+					
+				</div>
+				
+				<div class="rowExternalLists" class="form-group">
+					
+					<span class="cellExternalLists" class="form-group">
+					<h3 class="ng-scope">Expiry Date</h3>
+					<input id="listItemExpiryDate" name="listItemExpiryDate" type="text" placeholder="use dd/mm/yyyy format" 
+					class="form-control input-sm" ng-model="model.listItemExpiryDate"
+					ng-pattern="/^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/" />
+					<span class="help-inline-xlarge" ng-show="addListItemForm.listItemExpiryDate.$error.pattern">Expiry date must be provided in dd/mm/yyyy format</span>
+					</span>
+					
+					<span class="cellExternalLists" class="form-group">
+					<h3 class="ng-scope">Comment</h3>
+					<textarea id="listItemComment" name="listItemComment" type="text" placeholder="Comment" ng-minlength="2" ng-maxlength="500"
+					class="form-control input-sm" ng-model="model.listItemComment"></textarea>
+					</span>
+					
+				</div>
+				
+			</div>
+			
+			<button id="cancelAddListItemsButton" class="btn" ng-click="cancelAddListItem()">Cancel</button>
+			<button id="addListItemsButton" class="btn btn-success" ng-click="saveListItem()" ng-hide="model.updateListItem">Add List Item</button>
+			<button id="updateListItemsButton" class="btn btn-success" ng-click="updateListItem()" ng-show="model.updateListItem">Update List Item</button>
+			</form>
+	  
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="panel panel-default" ng-show="model.importListItems">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#importListItems">
+          Import List Items
+        </a>
+      </h4>
+    </div>
+    <div id="importListItems" class="panel-collapse collapse">
+      <div class="panel-body" ng-switch="model.initialised">
+
+			<input type="file" id="csvFileInput" onchange="handleFiles(this.files)" accept=".csv">
+			<button id="cancelImportListItemsButton" class="btn" ng-click="cancelImportListItems()">Cancel Bulk Import</button>
+			<button id="confirmImportListItemsButton" class="btn" ng-click="confirmImportListItems()">Upload</button>
+	  
+      </div>
+    </div>
+  </div>
+
+</div>

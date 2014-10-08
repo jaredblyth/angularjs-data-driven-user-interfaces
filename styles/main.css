@@ -1,0 +1,259 @@
+body {
+    height: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+   /* background: url("../img/bg.jpg") fixed no-repeat;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+label {
+    display: block;
+}
+
+/* ==========================================================================
+   Content
+   ========================================================================== */
+
+.page-content {
+    padding-top: 20px;
+    position: relative;
+    clear: both;
+}
+
+.page-content-wrapper {
+    min-height: 100%;
+    height: 100%;
+    margin: 0 auto -42px;
+    position: relative;
+    opacity: 0;
+}
+
+body .page-content-initialised {
+    opacity: 1.0;
+    display: block !important;
+    transition: opacity 1s;
+}
+
+.well {
+    opacity: 0.8;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+.loader {
+    display: block;
+    margin: 0 auto;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   Modals
+   ========================================================================== */
+
+.modal {
+    display: block;
+}
+
+.modal-title h3 {
+    margin: 0.3em;
+}
+
+.modal-title button {
+    margin-top: -0.3em;
+    margin-right: 0.2em;
+}
+
+.modal .help {
+    background: #007088;
+}
+
+.modal .help:focus,
+.modal .help:active,
+.modal .help:hover {
+    background: #5294A3;
+}
+
+.btn-round {
+    padding: 1px 5px;
+    border-radius: 15px;
+}
+
+.btn-space {
+    margin: 0 0.3em;
+}
+
+.table th, .table td {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+}
+
+.icon-green {
+    color: green;
+}
+
+.icon-red {
+    color: #d74945;
+}
+
+.icon-white {
+    color: #fff;
+    text-shadow: none;
+}
+
+.icon-blue {
+    color: #428bca;
+}
+
+.modal table a:hover {
+    text-decoration: none;
+}
+
+table input {
+    width: auto;
+}
+
+fieldset.bordered {
+    border: 1px solid #ccc;
+    padding: 1em;
+}
+
+select, textarea, input[type="text"],
+input[type="password"], input[type="datetime"],
+input[type="datetime-local"], input[type="date"],
+input[type="month"], input[type="time"],
+input[type="week"], input[type="number"],
+input[type="email"], input[type="url"],
+input[type="search"], input[type="tel"],
+input[type="color"], .uneditable-input {
+    margin-bottom: 2px;
+}
+
+.fulfilledControls button {
+    margin: 0.5em 0.5em 0.5em 0;
+}
+
+.help-inline-xlarge-alt {
+    background-color: rgba(250, 120, 126, 0.31);
+    border-radius: 5px 5px 5px 5px;
+    color: #444;
+    display: table-cell;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 0 5px 0 5px;
+    width: 270px;
+}
+
+.help-inline-xlarge {
+    color: #b20002;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 0 5px 0 5px;
+    width: 270px;
+}
+
+.fullwidth {
+    width: 90%;
+}
+
+.file-selector {
+    line-height: normal !important;
+}
+
+.date-column {
+    white-space: nowrap;
+}
+
+.clear-right {
+    clear: right;
+}
+
+.push {
+    height: 100%;
+}
+
+#shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    overflow: auto;
+    display: none;
+}
+
+.two-button-buttongroup {
+    min-width: 5em;
+}
+
+html .form-group input[type="checkbox"], html .form-group .inline-label {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+/* ==========================================================================
+   CSS Form Validation
+   ========================================================================== */
+.css-form input.ng-invalid.ng-dirty {
+    background-color: rgba(250, 120, 126, 0.31);
+}
+
+.css-form input.ng-valid.ng-dirty {
+    background-color: rgba(129, 239, 133, 0.30);
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media screen and (min-width: 767px) {
+
+    .grid-container {
+        position: absolute;
+        left: 0;
+    }
+
+    .entity-container {
+        position: absolute;
+        right: 0;
+    }
+}
+
+/* Large desktop */
+@media screen and (min-width: 1200px) {
+}
+
+/* Portrait tablet to landscape and desktop */
+@media screen and (min-width: 768px) {
+    body .modal-wide {
+        width: auto;
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media screen and (max-width: 768px) {
+    .page-content {
+        padding-top: 0;
+    }
+
+}
+
+/* Landscape phones and down */
+@media screen and (max-width: 480px) {
+
+}

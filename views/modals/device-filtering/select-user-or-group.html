@@ -1,0 +1,23 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-title">
+            <button type="button" class="close" ng-click="cancel()" aria-hidden="true">×</button>
+            <h3>Select a User or Group for Device Filtering</h3>
+        </div>
+
+        <div class="modal-body">
+            <div smart-table 
+				class="table table-bordered table-striped clear-right small-scrolling-table"
+                rows="model.Rows" 
+				columns="model.Columns"
+                config="model.Config">
+			</div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="select()">Select</button>
+            <button class="btn" ng-click="cancel()" aria-hidden="true">Close</button>
+        </div>
+
+    </div>
+</div>

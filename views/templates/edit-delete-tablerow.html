@@ -1,0 +1,10 @@
+{{formatedValue}}
+<div class="pull-right" ng-switch="dataRow._deleted">
+    <div ng-switch-when="false" class="two-button-buttongroup">
+        <button class="btn btn-danger btn-round pull-right smart-table-delete" ng-click="$emit('delete', dataRow)" ng-show="dataRow._mayDelete"><i class="glyphicon glyphicon-trash icon-white"></i></button>
+        <button class="btn btn-info btn-round pull-right smart-table-edit" ng-click="$emit('edit', dataRow)"><i class="glyphicon glyphicon-pencil"></i></button>
+    </div>
+    <div ng-switch-when="true">
+        <button class="btn btn-round pull-right smart-table-undelete" ng-click="$emit('undelete', dataRow)"><i class="glyphicon glyphicon-repeat"></i></button>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+<div class="text-center">
+    <a class="btn btn-danger btn-round" ng-show="!dataRow.selfManaged" ng-click="$emit('toggleSelfManaged', dataRow)"><i class="glyphicon glyphicon-remove icon-white"></i></a>
+    <a class="btn btn-success btn-round" ng-show="dataRow.selfManaged" ng-click="$emit('toggleSelfManaged', dataRow)"><i class="glyphicon glyphicon-ok icon-white"></i></a>
+</div>

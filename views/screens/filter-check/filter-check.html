@@ -1,0 +1,43 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#filterCheck">
+          Filter Check
+        </a>
+      </h4>
+    </div>
+    <div id="filterCheck" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised"> 
+	  
+		<form novalidate name="filterCheckForm" class="css-form form" role="form">
+	  
+			<h3 class="ng-scope">User Type</h3>
+			<select id="selectFilterCheckUsers" ng-model="model.selectedFilterCheckUser" ng-options="user.sn for user in model.filterCheckUsers" ng-change="updateFilterCheckUser()" class="form-control" style="cursor:pointer;">
+				<option value="" disabled selected>Please select a user type</option>
+            </select>
+			
+			<h3 class="ng-scope">URL</h3>
+			<select id="selectProtocolTypes" ng-model="model.selectedProtocolType" ng-options="type.name for type in model.protocolTypes" ng-change="updateProtocolType()" class="form-control" style="cursor:pointer;">
+				<option value="" disabled selected>Please select a URL protocol</option>
+            </select>
+			
+			<input type="text" class="form-control" placeholder="Please enter a URL address - e.g. mis.eq.edu.au" ng-model="model.url" required />
+			<span ng-show="showError(filterCheckForm,'required')" class="help-inline-xlarge">
+                        <i class="glyphicon glyphicon-warning-sign"></i> URL must be provided</span>
+			
+			<div id="filterResults">
+                <div ng-show="model.allowed" class="alert alert-success"><p ng-bind-html="model.resultText"></p></div>
+                <div ng-show="model.unknown" class="alert alert-warning"><p ng-bind-html="model.resultText"></p></div>
+                <div ng-show="model.blocked" class="alert alert-danger"><p ng-bind-html="model.resultText"></p></div>
+            </div>
+			
+			<button class="btn btn-success" ng-disabled="!model.initialised" ng-click="test(filterCheckForm)" spinner-button>Test</button>
+			
+		</form>
+	  
+      </div>
+    </div>
+  </div>
+
+</div>

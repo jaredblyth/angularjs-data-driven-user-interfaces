@@ -1,0 +1,92 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#urlCategorisationReport">
+          URL Categorisation Report
+        </a>
+      </h4>
+    </div>
+    <div id="urlCategorisationReport" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised"> 
+	  
+		<form novalidate name="urlUnblockReportForm" class="css-form form" role="form">	
+			
+			<div class="form-group">
+			<h3 class="ng-scope">Request Status</h3>
+			<select id="requestStatusSelector" ng-model="model.searchCriteria.selectedRequestStatus" ng-options="item.name for item in model.searchCriteria.requestStatus" class="form-control" style="cursor:pointer;">
+            </select>
+			</div>
+			
+			
+			<div class="form-group">
+			<h3 class="ng-scope">Date Type</h3>
+			<select id="dateTypeSelector" ng-model="model.searchCriteria.selectedDateType" ng-options="item.name for item in model.searchCriteria.dateType" ng-change="updateDateType()" class="form-control" style="cursor:pointer;">
+            </select>
+			</div>
+			
+			
+			<div id="fromRange" class="form-group">
+			<h3 class="ng-scope">From</h3>
+            <input id="startDate" name="startDate" type="text" placeholder="use dd/mm/yyyy"
+                class="form-control input-sm" ng-model="model.startDate"
+                ng-pattern="/^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/"
+                 required>
+                <span class="help-inline-xlarge" ng-show="showError(urlUnblockReportForm.startDate,'pattern')">The date must follow the pattern dd/mm/yyyy</span>
+                <span class="help-inline-xlarge" ng-show="showError(urlUnblockReportForm.startDate,'required')">You must specify a start date</span>
+			</div>
+			
+			
+			<div id="toRange" ng-show="model.showToRange" class="form-group">
+			<h3 class="ng-scope">To</h3>
+            <input id="endDate" name="endDate" type="text" placeholder="use dd/mm/yyyy"
+                class="form-control input-sm" ng-model="model.endDate"
+                ng-pattern="/^(([0-2]?\d{1})|([3][0,1]{1}))\/[0,1]?\d{1}\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/"
+                  ng-required="model.showToRange">
+                <span class="help-inline-xlarge" ng-show="showError(urlUnblockReportForm.endDate,'pattern')">The date must follow the pattern dd/mm/yyyy</span>
+                <span class="help-inline-xlarge" ng-show="showError(urlUnblockReportForm.endDate,'required')">You must specify an end date</span>
+			</div>
+
+
+			<div class="form-group">
+			<h3 class="ng-scope">User Type</h3>
+			<select id="userTypeSelector" ng-model="model.searchCriteria.selectedUserType" ng-options="item.name for item in model.searchCriteria.userType" ng-change="updateUserType()" class="form-control" style="cursor:pointer;">
+            </select>
+			
+			
+			<div ng-show="model.showCentreCode" class="form-group">
+			<h3 class="ng-scope">Centre Code</h3>
+			<input id="centreCode" name="centreCode" type="text" placeholder="e.g. 0001"
+                class="form-control input-sm" ng-model="model.searchCriteria._centreCode" ng-required="model.showCentreCode">
+            <span class="help-inline-xlarge" ng-show="showError(urlUnblockReportForm.centreCode,'required')">You must specify a Centre Code</span>
+			</div>
+			</div>
+			
+			
+			<button id="emailBtn" class="btn btn-primary" ng-click="emailReport(urlUnblockReportForm)" spinner-button>Email Report</button>
+			
+			<button id="displayButton" class="btn btn-primary" ng-click="displayReport(urlUnblockReportForm)" spinner-button>Display</button>
+			
+		</form>	
+		
+		
+		
+		<div id="smartTableReports" st-table="rowCollection"
+				smart-table
+                ng-show="model.smartTableReports"
+                class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+                rows="model.smartTableReportsRows"
+                columns="model.smartTableReportsColumns"
+                config="model.smartTableReportsConfig">
+            </div>
+			
+		<button id="exportButton" class="btn btn-primary" ng-show="model.smartTableReports" ng-csv="model.smartTableReportsRows" filename="url-categorisation-report.csv">Export</button>
+			
+		<button id="displayClose" class="btn" ng-click="displayClose()" ng-show="model.smartTableReports">Close</button>	
+			
+	  
+      </div>
+    </div>
+  </div>
+
+</div>

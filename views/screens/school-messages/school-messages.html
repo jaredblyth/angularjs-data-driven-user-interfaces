@@ -1,0 +1,35 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#schoolMessages">
+          Current School Messages
+        </a>
+      </h4>
+    </div>
+    <div id="schoolMessages" class="panel-collapse collapse in">
+      <div class="panel-body" ng-switch="model.initialised"> 
+	  
+			<div id="smarttableSchoolMessages"
+				smart-table
+                class="smarttable table table-bordered table-striped clear-right small-scrolling-table"
+                rows="model.schoolMessages"
+                columns="model.smarttableSchoolMessagesColumns"
+                config="model.smarttableSchoolMessagesConfig">
+            </div>
+			
+			<form name="updateMessageForm" ng-show="model.updateMessage" class="css-form form" role="form">
+			
+				<h3 class="ng-scope">Update School Message</h3>
+					
+				<text-angular id="updateMessageInput" id="updateMessageInput" ng-model="model.updateMessageContent" ng-change="update()" ta-toolbar-button-class="angularButton" ta-toolbar="[['h1','h2','h3','p'],['bold','italics', 'ul', 'ol', 'redo', 'undo', 'clear'], ['justifyLeft','justifyCenter','justifyRight'], ['html', 'insertLink', 'unlink']]"></text-angular>
+			
+				<button id="updateMessageButton" class="btn btn-success" ng-click="save()" ng-show="model.updatesToSave">Update</button>
+			
+			</form>
+			
+      </div>
+    </div>
+  </div>
+
+</div>

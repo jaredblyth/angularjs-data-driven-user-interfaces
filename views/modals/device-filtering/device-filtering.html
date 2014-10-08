@@ -1,0 +1,110 @@
+<style>
+#ajaxLoaderGif {position:absolute;left:250px;top:200px;visibility:hidden;}
+form {border-style:solid;border-weight:0.5px;border-color:#f0f0f0;padding:10px;}
+label {padding-top:25px;}
+button {margin-top:5px;}
+#smarttable {margin-top:10px;}
+.top-label {padding-top:0px;}
+input {padding-right:10px;}
+input[type=radio] + label {display:inline-block;margin-right:30px;font-weight:normal;padding-top:10px;}
+</style>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-title">
+            <button type="button" class="close" ng-click="cancel()" aria-hidden="true">×</button>
+            <h3>Device Filtering</h3>
+        </div>
+
+        <div class="modal-body" ng-switch="model.initialised">
+
+            <div ng-switch-when="true">
+
+                <img id="ajaxLoaderGif" src="/img/ajax-loader.gif"/>
+
+                <form name="userGroupForm" class="form">
+                    
+					
+                    <label class="top-label">Select by user(s) or group</label>
+
+                    <input type="radio" id="radio1" ng-model="model.userGroup" ng-change="changeToTextboxLastName()" value="Last name">
+                    <label for="radio1">Last name</label>
+
+                    <input type="radio" id="radio2" ng-model="model.userGroup" ng-change="changeToTextboxMisId()" value="MIS ID">
+                    <label for="radio2">MIS ID</label>
+
+                    <input type="radio" id="radio3" ng-model="model.userGroup" ng-change="changeToDropdown()" value="List">
+                    <label for="radio3">List</label>
+
+                    <input type="radio" id="radio4" ng-model="model.userGroup" ng-change="changeToGroup()" value="Group">
+                    <label for="radio4">Group</label>
+
+					
+                    <label>Selected Users(s)</label>
+                    <div class="form-group" ng-show="textboxLastName" >
+                        <input id="textboxLastName" name="textboxLastName" ng-show="textboxLastName" ng-model="model.lastName"
+                               type="text" class="form-control input-sm"  placeholder="Enter a full or partial Last Name"
+                               ng-pattern="/^[a-zA-Z]+$/" ng-minlength="2" ng-maxlength="20"/>
+                        <span ng-show="showError(userGroupForm.textboxLastName, 'pattern')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name is invalid</span>
+                        <span ng-show="showError(userGroupForm.textboxLastName, 'minlength')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name must be at least 2 characters</span>
+                        <span ng-show="showError(userGroupForm.textboxLastName, 'maxlength')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name must be less than 20 characters</span>
+                    </div>
+                    <button class="btn btn-primary" ng-show="textboxLastName" ng-click="getUserByLastName(userGroupForm)" ng-disabled="!model.initialised">Search</button>
+
+					
+                    <div class="form-group" ng-show="textboxMisId">
+                        <input id="textboxMisID" name="textboxMisID"  ng-show="textboxMisId" ng-model="model.misId" class="form-control input-sm" autofocus placeholder="Enter a MIS ID"
+                               ng-pattern="/^[0-9a-zA-Z]+$/" ng-minlength="5" ng-maxlength="11"/>
+                        <span ng-show="showError(userGroupForm.textboxMisID, 'pattern')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name is invalid</span>
+                        <span ng-show="showError(userGroupForm.textboxMisID, 'minlength')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name must be at least 5 characters</span>
+                        <span ng-show="showError(userGroupForm.textboxMisID, 'maxlength')" class="help-inline-xlarge"><i class="glyphicon glyphicon-warning-sign"></i> Name must be less than 11 characters</span>
+                    </div>
+                    <button class="btn btn-primary" ng-show="textboxMisId" ng-click="getUserByMisId(userGroupForm)" ng-disabled="!model.initialised">Search</button>
+
+					
+                    <select ng-show="dropdown" ng-model="model.selectedGroup" ng-options="group.name for group in model.dropDownOptions" ng-change="updateSelectedList()" class="form-control">
+                    </select>
+
+					
+                    <select ng-show="dropdownGroup" ng-model="model.selectedGroup" ng-options="group.name for group in model.dropDownOptions" ng-change="updateSelectedGroup()" class="form-control">
+                    </select>
+
+					
+                    <div id="smarttable"
+                         smart-table
+                         ng-show="smartTable"
+                         class="table table-bordered table-striped clear-right small-scrolling-table"
+                         rows="model.SelectedRows"
+                         columns="model.SelectedColumns"
+                         config="model.SelectedConfig">
+                    </div>
+
+
+                    <label>Set Filtering Level</label>
+
+                    <input type="radio" ng-model="model.filteringLevel" value="Medium">
+                    Medium
+                    <input type="radio" ng-model="model.filteringLevel" value="High">
+                    High
+
+                </form>
+
+            </div>
+
+			
+            <div ng-switch-default>
+                <img class="loader" src="/img/ajax-loader.gif" width="32" height="32">
+            </div>
+
+			
+        </div>
+
+		
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="submit()" ng-disabled="!model.initialised" spinner-button>Submit</button>
+            <button class="btn" ng-click="cancel()" aria-hidden="true">Cancel</button>
+            <button class="btn btn-primary" ng-csv="model.exportCsv" filename="device-filtering-selected-users.csv" aria-hidden="true">Export</button>
+        </div>
+
+    </div>
+</div>

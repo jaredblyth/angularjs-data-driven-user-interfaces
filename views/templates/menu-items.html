@@ -1,0 +1,17 @@
+<div id="accordion{{menuitem.label}}" ng-repeat="menuitem in menuitems"  class="menuOptionShell">
+	<a ng-click="subMenuItemShow($index)">
+		<div class="menuOption">
+			{{menuitem.label}}
+		</div>
+	</a>
+
+	<div id="{{$index}}" class="menuItem">
+		<div ng-repeat="option in menuitem.items" class="subMenuOptionShell">
+			<a href="{{option.template}}" id="subMenuDataToggle" ng-click="subMenuItemHide()">
+				<div class="subMenuOption">
+					{{option.label}}
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
